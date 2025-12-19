@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connecting Dots - Puzzle Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: #2D3250;
+            color: #F5F5F5;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: linear-gradient(135deg, #2D3250 0%, #363B5E 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #F6B17A;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #B8BFD8;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .store-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .store-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: #424769;
+            color: #F5F5F5;
+            padding: 15px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 2px solid #7077A1;
+            font-size: 1rem;
+        }
+
+        .store-button:hover {
+            background-color: #7077A1;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(112, 119, 161, 0.3);
+        }
+
+        .store-icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 60px 20px;
+            background-color: #2D3250;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #F6B17A;
+            margin-bottom: 50px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background-color: #424769;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #363B5E;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #7077A1;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #F6B17A;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .feature-card p {
+            color: #B8BFD8;
+        }
+
+        /* Screenshots Section */
+        .screenshots {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #363B5E 0%, #2D3250 100%);
+        }
+
+        .screenshots-slider {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px 0;
+            scroll-snap-type: x mandatory;
+        }
+
+        .screenshots-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .screenshots-slider::-webkit-scrollbar-track {
+            background: #424769;
+            border-radius: 10px;
+        }
+
+        .screenshots-slider::-webkit-scrollbar-thumb {
+            background: #7077A1;
+            border-radius: 10px;
+        }
+
+        .screenshot-item {
+            flex: 0 0 300px;
+            scroll-snap-align: center;
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 2px solid #7077A1;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* About Section */
+        .about {
+            padding: 60px 20px;
+            background-color: #2D3250;
+        }
+
+        .about-content {
+            background-color: #424769;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #363B5E;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content h2 {
+            color: #F6B17A;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .about-content p {
+            color: #B8BFD8;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #424769;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 2px solid #7077A1;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #7077A1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #F6B17A;
+        }
+
+        .footer p {
+            color: #B8BFD8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .screenshot-item {
+                flex: 0 0 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Connecting Dots</h1>
+            <p>Challenge your mind with the ultimate puzzle game. Connect the dots, solve intricate patterns, and master every level!</p>
+            
+            <div class="store-buttons">
+                <a href="#" class="store-button">
+                    <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                    </svg>
+                    <div>
+                        <div style="font-size: 0.7rem; opacity: 0.8;">GET IT ON</div>
+                        <div style="font-weight: bold;">Google Play</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>About Connecting Dots</h2>
+                <p>
+                    Connecting Dots is a captivating puzzle game that challenges players to connect dots in the correct sequence to complete intricate patterns. Each level presents a unique challenge that will test your logic and creativity.
+                </p>
+                <p>
+                    Whether you're a casual gamer looking for a relaxing pastime or a puzzle enthusiast seeking a real challenge, Connecting Dots offers an experience that grows with you. Start with simple patterns and progress to complex designs that will truly test your skills.
+                </p>
+                <p>
+                    Download now and start your journey through hundreds of mind-bending puzzles!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="mailto:nabin31bogati@gmail.com">Contact Us</a>
+            </div>
+            <p>&copy; 2024 Connecting Dots. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
